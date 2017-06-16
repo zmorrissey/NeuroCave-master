@@ -393,34 +393,56 @@ createLegend = function(model) {
     }
 };
 
+// Add Color Coding dropdown menu containing: Anatomy, Embededness ...
+/*addColorGroupList = function() {
+    var menu = d3.select("colorCoding")
+    var names = atlas.getGroupsNames();
+    for (var i = 0; i < names.length; i++) {
+        var el = document.createElement("option");
+	el.textContent = names[i];
+	el.value = names[i];
+	el.selected = (i==0);
+	menu.appendChild(el);
+    }
+}; */ 
 
 /* Color coding area at upload */
 // add "Color Coding" radio button group containing: Anatomy, Embeddedness ...
-addColorGroupList = function() {
-    var menu = d3.select("#colorCoding");
 
+// Dropdown menu
+initColorCoding = function () {
+    var select = document.getElementById("#colorCoding");
+    var names = getGroupsNames();
+    for (var i = 0; i < names.length; i++) {
+        var el = document.createElement("option");
+        el.textContent = names[i];
+	el.innerHTML = names[i];
+        el.value = names[i];
+        el.selected = (i==0);
+        select.appendChild(el);
+    }
+};
+/*    var menu = d3.select("#colorCoding");
     menu.append("label")
-        .attr("for","colorGroup")
-        .text("Color coding:");
+        .attr("for", "colorGroup")
+        .text("Color coding")
+        .append("select")
+        .on("change", function () {
+            setColorClusteringSliderVisibility("hidden");
+            changeColorGroup(this.value);
+	});
     menu.append("br");
 
     var names = atlas.getGroupsNames();
-    for (var i = 0; i < names.length; ++i) {
-        menu.append("input")
-            .attr("type", "radio")
+    for (var i = 0; i < names.length; i++) {
+            .append("option", names[i])
             .attr("name","colorGroup")
-            .attr("id",names[i]+"_ColorGroup")
-            .attr("value",names[i])
-            .attr("checked","false")
-            .on("change", function () {
-                setColorClusteringSliderVisibility("hidden");
-                changeColorGroup(this.value);
-            });
-        menu.append("label")
-            .attr("for",names[i])
-            .text(names[i]);
-        menu.append("br");
-    }
+	    .attr("id", names[i] + "_ColorGroup")
+            .attr("value", names[i])
+            .attr("checked","false");
+    };
+} */
+
 
     if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
         var clusterNames = modelLeft.getClusteringTopologiesNames();
