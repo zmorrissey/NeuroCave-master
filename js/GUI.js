@@ -397,6 +397,7 @@ createLegend = function(model) {
 // add "Color Coding" radio button group containing: Anatomy, Embeddedness ...
 addColorGroupList = function() {
 
+    // Create dropdown menu
     var select = document.getElementById("colorCoding");
     var names = atlas.getGroupsNames();
     for (var i = 0; i < names.length; i++) {
@@ -406,7 +407,7 @@ addColorGroupList = function() {
         select.appendChild(el);
     }
 
-    
+/*    
     if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
         var clusterNames = modelLeft.getClusteringTopologiesNames();
         var hierarchicalClusteringExist = false;
@@ -436,7 +437,7 @@ addColorGroupList = function() {
     }
 
     setColorClusteringSliderVisibility("hidden");
-    document.getElementById(names[0]+"_ColorGroup").checked = "true";
+    document.getElementById(names[0]+"_ColorGroup").checked = "true"; */
 };
 
 addColorClusteringSlider = function () {
@@ -474,8 +475,20 @@ setColorClusteringSliderVisibility = function (value) {
 // add "Topological Spaces" radio button group for scene containing:
 // Isomap, MDS, tSNE and anatomy spaces
 addTopologyRadioButtons = function (model, side) {
-
     var topologies = model.getTopologies();
+    var hierarchicalClusteringExist = false;
+
+    // Create dropdown menu
+    var select = document.getElementById("topologyL", "topologyR");
+    for (var i = 0; i < topologies.length; i++) {
+        var el = document.createElement("option");
+        el.textContent = topologies[i];
+        el.value = topologies[i];
+        select.appendChild(el);
+	console.log(topologies);
+    }
+
+/*    var topologies = model.getTopologies();
     var hierarchicalClusteringExist = false;
 
     var menu = d3.select("#topology" + side);
@@ -515,13 +528,13 @@ addTopologyRadioButtons = function (model, side) {
             .attr("for",topology)
             .text(topology);
         menu.append("br");
-    }
+    } 
 
     if (hierarchicalClusteringExist)
         addClusteringSlider(model, side);
 
     setClusteringSliderVisibility(side, "hidden");
-    document.getElementById(topologies[0] + side).checked = "true";
+    document.getElementById(topologies[0] + side).checked = "true"; */
 };
 
 // remove geometry buttons

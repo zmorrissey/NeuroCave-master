@@ -64,7 +64,9 @@
 
 <!-- Legend -->
 <svg class = "menu" id="legend"></svg>
-<select class ="jumpmenu" id="colorCoding"></select>
+<select class ="jumpmenu" id="colorCoding">
+  <option selected disabled hidden>Color Coding</option>
+</select>
 
 <!-- Dropdowns -->
 <select id = "subjectMenuLeft" class = "jumpmenu"></select>
@@ -74,10 +76,12 @@
 
 <div class = "menu" id ="shortestPath"></div>
 <div class = "menu" id ="topologyLeft">
-    <button type = 'button' id = 'syncLeft' >Sync</button>
+  <select class="jumpmenu" id="topologyL"></select>
+  <button type = 'button' id = 'syncLeft' >Sync</button>
 </div>
 <div class = "menu" id ="topologyRight">
-    <button type = 'button' id = 'syncRight' >Sync</button>
+  <select class="jumpmenu" id="topologyR"></select>
+  <button type = 'button' id = 'syncRight' >Sync</button>
 </div>
 <div id="vrLeft">
     <div id="vrButtonLeft"></div>
