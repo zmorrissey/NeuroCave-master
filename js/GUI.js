@@ -474,6 +474,8 @@ setColorClusteringSliderVisibility = function (value) {
 /* Topology options at topologyLeft and topologyRight */
 // add "Topological Spaces" radio button group for scene containing:
 // Isomap, MDS, tSNE and anatomy spaces
+
+// Change name later to be consistent
 addTopologyRadioButtons = function (model, side) {
     var topologies = model.getTopologies();
     var hierarchicalClusteringExist = false;

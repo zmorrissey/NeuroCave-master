@@ -68,21 +68,33 @@
   <option selected disabled hidden>Color Coding</option>
 </select>
 
-<!-- Dropdowns -->
-<select id = "subjectMenuLeft" class = "jumpmenu"></select>
+<!-- Controls -->
+<select id = "subjectMenuLeft" class = "jumpmenu">
+  <option selected disabled hidden>Subject</option>
+</select>
 
-<select id = "subjectMenuRight" class = "jumpmenu"></select>
+<select id = "subjectMenuRight" class = "jumpmenu">
+  <option selected disabled hidden>Subject</option>
+</select>
 
 
 <div class = "menu" id ="shortestPath"></div>
+
 <div class = "menu" id ="topologyLeft">
-  <select class="jumpmenu" id="topologyL"></select>
+  <select class="jumpmenu" id="topologyL">
+    <option selected disabled hidden>Coordinate space</option>
+  </select>
   <button type = 'button' id = 'syncLeft' >Sync</button>
 </div>
+
 <div class = "menu" id ="topologyRight">
-  <select class="jumpmenu" id="topologyR"></select>
+  <select class="jumpmenu" id="topologyR">
+    <option selected disabled hidden>Coordinate space</option>
+  </select>
   <button type = 'button' id = 'syncRight' >Sync</button>
 </div>
+
+<!-- VR -->
 <div id="vrLeft">
     <div id="vrButtonLeft"></div>
     <a id="magicWindowLeft" href="#">Maximize</a>
@@ -91,6 +103,8 @@
     <div id="vrButtonRight"></div>
     <a id="magicWindowRight" href="#">Maximize</a>
 </div>
+
+<!-- Panels -->
 <div class = "menu" id ="rightFslLabels"></div>
 <div class = "menu" id = "nodeInfoPanel"></div>
 <div class = "menu" id = "edgeInfoPanel"></div>
