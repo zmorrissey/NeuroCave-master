@@ -404,6 +404,7 @@ addColorGroupList = function() {
         var el = document.createElement("option");
         el.textContent = names[i];
         el.value = names[i];
+	el.selected = (i==0);
         select.appendChild(el);
     }
 
@@ -481,15 +482,21 @@ addTopologyRadioButtons = function (model, side) {
     var hierarchicalClusteringExist = false;
 
     // Create dropdown menu
-    var select = document.getElementById("topologyL", "topologyR");
-    for (var i = 0; i < topologies.length; i++) {
-        var el = document.createElement("option");
-        el.textContent = topologies[i];
-        el.value = topologies[i];
-        select.appendChild(el);
-	console.log(topologies);
-    }
+    //var select = document.getElementsByClassName("topology");
+    var select = document.getElementById("topology" + side);
 
+    //for (var j = 0; j < select.length; j++) {
+        for (var i = 0; i < topologies.length; i) {
+            var el = document.createElement("option");
+	    el.textContent = topologies[i];
+	    el.value = topologies[i];
+	    el.selected = (i==0);
+            select.appendChild(el);
+	}
+    //} 
+
+   
+    
 /*    var topologies = model.getTopologies();
     var hierarchicalClusteringExist = false;
 
