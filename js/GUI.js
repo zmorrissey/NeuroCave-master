@@ -417,22 +417,45 @@ addColorGroupList = function() {
     };
 
 
-/* If both L/R models have data, first create slider dynamically
-if "P(L)ACE" is selected; on change of selection eecute
-changeColorGroup function */
+    // If both L/R models have clustering data, append those options
+    // to the color coding dropdown
 
-/* Assign on change functions to value of selection */
-    /*
     if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
 	var clusterNames = modelLeft.getClusteringTopologiesNames();
 	var hierarchicalClusteringExist = false;
 	for (var i = 0; i < clusterNames.length; i++) {
 	    var name = clusterNames[i];
-	    var isHierarchical = name == "PLACE" || name = "PACE";
+	    var isHierarchical = name == "PLACE" || name == "PACE";
 	    // |= bitwise OR assignment: x |= y => x = x | y 
-	    hierarchicalClusteringExist |= isHierarchical; 
-	    }
-    } */
+	    hierarchicalClusteringExist |= isHierarchical;
+	    var el = document.createElement("option");
+	    el.textContent = name;
+	    el.value = name + ("_ColorGroup");
+	    el.selected = false;
+	    el.id = name + "_ColorGroup";
+	    el.setAttribute("hierarchical", isHierarchical);
+	    select.appendChild(el);
+	}
+	// Access attribute value of each option in dropdown
+	var optionAttr = select.options[select.selectedIndex];
+
+	// Create slider dynamically if "P(L)ACE" is selected
+        // Execute changeColorGroup function based on selection
+	select.onchange = function() {
+	    console.log(select.options[select.selectedIndex].getAttribute("hierarchical"));
+	    setColorClusteringSliderVisibility(optionAttr.getAttribute("hierarchical") == 'true' ? "visible" : "hidden");
+	    changeColorGroup(this.value);
+	};
+	
+	// Generate slider
+	if (hierarchicalClusteringExist) {
+	    addColorClusteringSlider();
+	}
+	
+    }
+
+    setColorClusteringSliderVisibility("hidden");
+    //document.getElementById(names[0]+"_ColorGroup").checked = "true"; 
 
 /*    
     if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
@@ -465,7 +488,7 @@ changeColorGroup function */
 
     setColorClusteringSliderVisibility("hidden");
     document.getElementById(names[0]+"_ColorGroup").checked = "true"; */
-};
+}; 
 
 addColorClusteringSlider = function () {
     var menu = d3.select("#colorCoding");
