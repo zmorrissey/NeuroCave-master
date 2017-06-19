@@ -116,7 +116,7 @@ button > input[type="checkbox"] {
 
 #colorCoding{
     position: absolute;
-    width: 180px;
+    width: 100px;
     height: 25px;
     top: 50%;
     right: 5px
