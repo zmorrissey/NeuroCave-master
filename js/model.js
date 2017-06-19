@@ -313,7 +313,7 @@ function Model() {
             regions[element] = {
                 active: true,
                 state: 'active'
-            }
+            };
         }
     };
 

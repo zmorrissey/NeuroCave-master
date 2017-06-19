@@ -531,18 +531,42 @@ addTopologyRadioButtons = function (model, side, dropside) {
     var hierarchicalClusteringExist = false;
 
     // Create dropdown menu
-    //var select = document.getElementsByClassName("topology");
     var select = document.getElementById("topology" + dropside);
 
-    //for (var j = 0; j < select.length; j++) {
     for (var i = 0; i < topologies.length; i++) {
+	var topology = topologies[i];
         var el = document.createElement("option");
         el.textContent = topologies[i];
 	el.value = topologies[i];
 	el.selected = (i==0);
         select.appendChild(el);
-	}
-    //} 
+    }
+
+    // Execute functions based on selection
+    switch(topology) {
+    case ("PLACE"):
+    case ("PACE"):
+	select.onchange = function() {
+	    setClusteringSliderVisibility(side, "visible");
+	    changeActiveGeometry(model, side, this.value);
+	};
+	hierarchicalClusteringExist = true;
+	break;
+    default:
+	select.onchange = function() {
+	    setClusteringSliderVisibility(side, "hidden");
+	    changeActiveGeometry(model, side, this.value);
+	};
+	break;
+    }
+
+    if (hierarchicalClusteringExist)
+	addClusteringSlider(model, side);
+
+    setClusteringSliderVisibility(side, "hidden");
+
+	
+
 
    
     
