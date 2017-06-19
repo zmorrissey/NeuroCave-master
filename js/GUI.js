@@ -397,7 +397,8 @@ createLegend = function(model) {
 // add "Color Coding" radio button group containing: Anatomy, Embeddedness ...
 addColorGroupList = function() {
 
-    // Create dropdown menu
+    // Create dropdown menu by iterating through atlas names
+    // and creating an option for each name
     var select = document.getElementById("colorCoding");
     var names = atlas.getGroupsNames();
     for (var i = 0; i < names.length; i++) {
@@ -406,7 +407,32 @@ addColorGroupList = function() {
         el.value = names[i];
 	el.selected = (i==0);
         select.appendChild(el);
-    }
+
+    };
+
+    // On dropdown selection, execute functions
+    select.onchange = function() {
+       setColorClusteringSliderVisibility("hidden");
+       changeColorGroup(this.value);   
+    };
+
+
+/* If both L/R models have data, first create slider dynamically
+if "P(L)ACE" is selected; on change of selection eecute
+changeColorGroup function */
+
+/* Assign on change functions to value of selection */
+    /*
+    if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
+	var clusterNames = modelLeft.getClusteringTopologiesNames();
+	var hierarchicalClusteringExist = false;
+	for (var i = 0; i < clusterNames.length; i++) {
+	    var name = clusterNames[i];
+	    var isHierarchical = name == "PLACE" || name = "PACE";
+	    // |= bitwise OR assignment: x |= y => x = x | y 
+	    hierarchicalClusteringExist |= isHierarchical; 
+	    }
+    } */
 
 /*    
     if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
