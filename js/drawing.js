@@ -271,8 +271,8 @@ initCanvas = function () {
     addModalityButton();
     addThresholdSlider();
     addColorGroupList();
-    addTopologyRadioButtons(modelLeft, 'Left', 'L');
-    addTopologyRadioButtons(modelRight, 'Right', 'R');
+    addTopologyRadioButtons(modelLeft, 'Left');
+    addTopologyRadioButtons(modelRight, 'Right');
 
     addShortestPathFilterButton();
     addDistanceSlider();

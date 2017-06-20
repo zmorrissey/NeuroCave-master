@@ -526,12 +526,22 @@ setColorClusteringSliderVisibility = function (value) {
 // Isomap, MDS, tSNE and anatomy spaces
 
 // Change name later to be consistent
-addTopologyRadioButtons = function (model, side, dropside) {
+addTopologyRadioButtons = function (model, side) {
     var topologies = model.getTopologies();
     var hierarchicalClusteringExist = false;
 
+    // Assign dropdownSide to L/R for "topologyL(R)" 
+    switch(side) {
+    case("Left"):
+        var dropdownSide = side.replace("Left", "L");
+        break;
+    case("Right"):
+	var dropdownSide = side.replace("Right", "R");
+	break;
+    }
+    
     // Create dropdown menu
-    var select = document.getElementById("topology" + dropside);
+    var select = document.getElementById("topology" + dropdownSide);
 
     for (var i = 0; i < topologies.length; i++) {
 	var topology = topologies[i];
