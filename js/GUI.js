@@ -522,32 +522,26 @@ setColorClusteringSliderVisibility = function (value) {
 };
 
 /* Topology options at topologyLeft and topologyRight */
-// add "Topological Spaces" radio button group for scene containing:
+// add "Topological Spaces" dropdown for scene containing:
 // Isomap, MDS, tSNE and anatomy spaces
 
-// Change name later to be consistent
+// TODO: Change function name later to be consistent
 addTopologyRadioButtons = function (model, side) {
     var topologies = model.getTopologies();
     var hierarchicalClusteringExist = false;
 
-    // Assign dropdownSide to L/R for "topologyL(R)" 
-    switch(side) {
-    case("Left"):
-        var dropdownSide = side.replace("Left", "L");
-        break;
-    case("Right"):
-	var dropdownSide = side.replace("Right", "R");
-	break;
-    }
-    
     // Create dropdown menu
-    var select = document.getElementById("topology" + dropdownSide);
+    var select = document.getElementById("topology" + side.slice(0,1));
+    // side.slice selects only 'L/R' from 'Left'/'Right'
+    // to append options to topology(L/R) selects
 
     for (var i = 0; i < topologies.length; i++) {
 	var topology = topologies[i];
         var el = document.createElement("option");
-        el.textContent = topologies[i];
-	el.value = topologies[i];
+        el.textContent = topology;
+	el.name = "geometry" + side;
+	el.id = topology + side;
+	el.value = topology;
 	el.selected = (i==0);
         select.appendChild(el);
     }
