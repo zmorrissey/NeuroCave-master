@@ -407,7 +407,6 @@ addColorGroupList = function() {
         el.value = names[i];
 	el.selected = (i==0);
         select.appendChild(el);
-
     };
 
     // On dropdown selection, execute functions
@@ -419,32 +418,29 @@ addColorGroupList = function() {
 
     // If both L/R models have clustering data, append those options
     // to the color coding dropdown
-
     if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
 	var clusterNames = modelLeft.getClusteringTopologiesNames();
 	var hierarchicalClusteringExist = false;
 	for (var i = 0; i < clusterNames.length; i++) {
 	    var name = clusterNames[i];
 	    var isHierarchical = name == "PLACE" || name == "PACE";
-	    // |= bitwise OR assignment: x |= y => x = x | y 
-	    hierarchicalClusteringExist |= isHierarchical;
+	    hierarchicalClusteringExist |= isHierarchical; // x |= y => x = x | y
 	    var el = document.createElement("option");
 	    el.textContent = name;
-	    el.value = name + ("_ColorGroup");
+	    el.value = name;
 	    el.selected = false;
 	    el.id = name + "_ColorGroup";
 	    el.setAttribute("hierarchical", isHierarchical);
 	    select.appendChild(el);
 	}
-	// Access attribute value of each option in dropdown
-	var optionAttr = select.options[select.selectedIndex];
 
 	// Create slider dynamically if "P(L)ACE" is selected
         // Execute changeColorGroup function based on selection
 	select.onchange = function() {
-	    console.log(select.options[select.selectedIndex].getAttribute("hierarchical"));
-	    setColorClusteringSliderVisibility(optionAttr.getAttribute("hierarchical") == 'true' ? "visible" : "hidden");
-	    changeColorGroup(this.value);
+	    // Access attribute value of each option in dropdown
+	    var currentOption = select.options[select.selectedIndex];
+	    setColorClusteringSliderVisibility(currentOption.getAttribute("hierarchical") == 'true' ? "visible" : "hidden");
+	    changeColorGroup(currentOption.value);
 	};
 	
 	// Generate slider
@@ -455,39 +451,6 @@ addColorGroupList = function() {
     }
 
     setColorClusteringSliderVisibility("hidden");
-    //document.getElementById(names[0]+"_ColorGroup").checked = "true"; 
-
-/*    
-    if (modelLeft.hasClusteringData() && modelRight.hasClusteringData()) {
-        var clusterNames = modelLeft.getClusteringTopologiesNames();
-        var hierarchicalClusteringExist = false;
-        for (var i = 0; i < clusterNames.length; ++i) {
-            var name = clusterNames[i];
-            var isHierarchical = name == "PLACE" || name == "PACE";
-            hierarchicalClusteringExist |= isHierarchical;
-            menu.append("input")
-                .attr("type", "radio")
-                .attr("name", "colorGroup")
-                .attr("value", name)
-                .attr("id", name+"_ColorGroup")
-                .attr("checked", "false")
-                .on("change", function () {
-                    setColorClusteringSliderVisibility(this.getAttribute("hierarchical") == 'true' ? "visible" : "hidden");
-                    changeColorGroup(this.value);
-                });
-            menu.append("label")
-                .attr("for", name)
-                .text(name);
-            menu.append("br");
-            document.getElementById(name+"_ColorGroup").setAttribute("hierarchical", isHierarchical);
-        }
-
-        if (hierarchicalClusteringExist)
-            addColorClusteringSlider();
-    }
-
-    setColorClusteringSliderVisibility("hidden");
-    document.getElementById(names[0]+"_ColorGroup").checked = "true"; */
 }; 
 
 addColorClusteringSlider = function () {
