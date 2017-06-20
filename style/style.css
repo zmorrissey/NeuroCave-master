@@ -125,6 +125,7 @@ button > input[type="checkbox"] {
 #subjectMenuLeft {
     position: absolute;
     height: 25px;
+    width: 100px;
     top: 5px;
     left: 1%;
     color: black;
@@ -133,6 +134,7 @@ button > input[type="checkbox"] {
 #subjectMenuRight {
     position: absolute;
     height: 25px;
+    width: 100px;
     top: 5px;
     left: 51%;
     color: black;
@@ -149,15 +151,16 @@ button > input[type="checkbox"] {
 #topologyL {
     position: absolute;
     height: 25px;
+    width: 100px;
     top: 5px;
-    left: 7%;
+    left: 10%;
 }
 
 #syncLeft {
     position: absolute;
     height: 25px;
     top: 5px;
-    left: 18%;
+    left: 20%;
 }
 
 #syncRight {
@@ -170,8 +173,9 @@ button > input[type="checkbox"] {
 #topologyR {
     position: absolute;
     height: 25px;
+    width: 100px;
     top: 5px;
-    left: 58%;
+    left: 60%;
 }
 
 #nodeInfoPanel {
