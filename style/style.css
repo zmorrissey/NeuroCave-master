@@ -77,7 +77,7 @@ button > input[type="checkbox"] {
     position: relative;
     width : 95px;
     height: 40px;
-    margin: 4px;
+    /*margin: 4px; */
     font-size: 11px;
 }
 
