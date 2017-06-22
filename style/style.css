@@ -77,7 +77,7 @@ button > input[type="checkbox"] {
     position: relative;
     width : 95px;
     height: 40px;
-    margin: 4px;
+    /*margin: 4px; */
     font-size: 11px;
 }
 
@@ -116,27 +116,27 @@ button > input[type="checkbox"] {
 
 #colorCoding{
     position: absolute;
-    width: 150px;
-    height: 280px;
-    top: 20px;
-    left: 20px
+    width: 100px;
+    height: 25px;
+    top: 50%;
+    right: 5px
 }
 
 #subjectMenuLeft {
     position: absolute;
-    width: 180px;
     height: 25px;
+    width: 100px;
     top: 5px;
-    left: 20%;
+    left: 1%;
     color: black;
 }
 
 #subjectMenuRight {
     position: absolute;
-    width: 180px;
     height: 25px;
+    width: 100px;
     top: 5px;
-    right: 20%;
+    left: 51%;
     color: black;
 }
 
@@ -145,31 +145,37 @@ button > input[type="checkbox"] {
     width: 175px;
     height: 100px;
     top: 200px;
-    right: 30px
+    right: 30px;
 }
 
-#topologyLeft {
+#topologyL {
     position: absolute;
-    width: 175px;
-    height: 150px;
-    top: 400px;
-    left: 20px
+    height: 25px;
+    width: 100px;
+    top: 5px;
+    left: 10%;
 }
 
 #syncLeft {
+    position: absolute;
     height: 25px;
+    top: 5px;
+    left: 20%;
 }
 
 #syncRight {
+    position: absolute;
     height: 25px;
+    top: 5px;
+    left: 70%;
 }
 
-#topologyRight {
+#topologyR {
     position: absolute;
-    width: 175px;
-    height: 150px;
-    top: 400px;
-    right: 30px
+    height: 25px;
+    width: 100px;
+    top: 5px;
+    left: 60%;
 }
 
 #nodeInfoPanel {
