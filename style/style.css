@@ -118,8 +118,8 @@ button > input[type="checkbox"] {
     position: absolute;
     width: 100px;
     height: 25px;
-    top: 50%;
-    right: 5px
+    top: 55%;
+    right: 100px;
 }
 
 #subjectMenuLeft {
