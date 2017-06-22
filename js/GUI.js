@@ -493,6 +493,18 @@ addTopologyRadioButtons = function (model, side) {
     var topologies = model.getTopologies();
     var hierarchicalClusteringExist = false;
 
+    // Append <select> to topology divs
+    var dropdown = d3.select("#topology" + side);
+    dropdown.append("select")
+	.attr("class", "jumpmenu topology")
+	.attr("id", "topology" + side.slice(0,1));
+    
+    // Append sync button to topology divs
+    dropdown.append("button")
+	.attr("type", "button")
+	.attr("id", "sync" + side)
+	.text("Sync");
+    
     // Create dropdown menu
     var select = document.getElementById("topology" + side.slice(0,1));
     // side.slice selects only 'L/R' from 'Left'/'Right'
