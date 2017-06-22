@@ -494,8 +494,4 @@ changeSceneToSubject = function (subjectId, model, previewArea, side) {
                 })
             ;
         });
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> dropcss
