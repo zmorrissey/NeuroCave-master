@@ -468,11 +468,18 @@ addColorClusteringSlider = function () {
         .attr("max", 4)
         .attr("step", 1)
         .on("change", function () {
-            document.getElementById("colorClusteringSliderLabel").innerHTML = "Level " + this.value;
+            document.getElementById("colorClusteringSliderLabel").innerHTML = "Clustering level: " + this.value;
             modelLeft.updateClusteringGroupLevel(this.value);
             modelRight.updateClusteringGroupLevel(this.value);
             changeColorGroup(modelLeft.getActiveGroupName());
         });
+
+    // Apply label
+    menu.append("label")
+        .attr("for", "colorClusteringSlider")
+        .attr("id", "colorClusteringSliderLabel")
+        .text("Clustering level: 4");
+    menu.append("br");
 };
 
 setColorClusteringSliderVisibility = function (value) {
