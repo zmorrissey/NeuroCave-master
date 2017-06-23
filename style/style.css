@@ -46,6 +46,15 @@ input[type="file"] {
     opacity: 0;
 }
 
+/* Firefox */
+input[type="range"]::-moz-range-track {
+    background: silver;
+}
+
+/* Chrome */
+input[type='range']::-webkit-slider-runnable-track {
+    background: silver;
+}
 
 button > input[type="checkbox"] {
     position: absolute;
@@ -148,11 +157,17 @@ button > input[type="checkbox"] {
     right: 30px;
 }
 
+label[for="topologyL"] {
+    position: absolute;
+    top: 5px;
+    left: 10%;
+}
+
 #topologyL {
     position: absolute;
     height: 25px;
     width: 100px;
-    top: 5px;
+    top: 22px;
     left: 10%;
 }
 
@@ -170,11 +185,17 @@ button > input[type="checkbox"] {
     left: 70%;
 }
 
+label[for="topologyR"] {
+    position: absolute;
+    top: 5px;
+    left: 60%;
+}
+
 #topologyR {
     position: absolute;
     height: 25px;
     width: 100px;
-    top: 5px;
+    top: 22px;
     left: 60%;
 }
 

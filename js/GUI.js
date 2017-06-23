@@ -37,6 +37,8 @@ initSubjectMenu = function (side) {
 addDimensionFactorSlider = function () {
     var panel = d3.select("#nodeInfoPanel");
 
+    panel.append("br");
+
     panel.append("input")
         .attr("type", "range")
         .attr("value", "1")
@@ -454,12 +456,10 @@ addColorGroupList = function() {
 }; 
 
 addColorClusteringSlider = function () {
-    var menu = d3.select("#colorCoding");
-    menu.append("br");
-    menu.append("label")
-        .attr("for", "colorClusteringSlider")
-        .attr("id", "colorClusteringSliderLabel")
-        .text("Level 4");
+    // Add color clustering slider to node info panel
+    var menu = d3.select("#nodeInfoPanel");
+
+    // Create slider
     menu.append("input")
         .attr("type", "range")
         .attr("value", 4)
@@ -493,8 +493,15 @@ addTopologyRadioButtons = function (model, side) {
     var topologies = model.getTopologies();
     var hierarchicalClusteringExist = false;
 
-    // Append <select> to topology divs
     var dropdown = d3.select("#topology" + side);
+
+    // Apply labels above dropdowns
+    dropdown.append("label")
+	.attr("for", "topology" + side.slice(0,1))
+	.text("Coordinate space");
+    dropdown.append("br");
+    
+    // Append <select> to topology divs
     dropdown.append("select")
 	.attr("class", "jumpmenu topology")
 	.attr("id", "topology" + side.slice(0,1));
@@ -504,12 +511,32 @@ addTopologyRadioButtons = function (model, side) {
 	.attr("type", "button")
 	.attr("id", "sync" + side)
 	.text("Sync");
+
+    // Append sync function to each side and console.log sync
+    var syncButton = d3.select("#sync" + side);
+    switch(side) {
+    case "Left":
+        syncButton.on("click", function() {
+	    previewAreaLeft.syncCameraWith(previewAreaRight.getCamera());
+	    console.log("Syncing to match right...");
+	});
+	break;
+    case "Right":
+	syncButton.on("click", function() {
+	    previewAreaRight.syncCameraWith(previewAreaLeft.getCamera());
+	    console.log("Syncing to match left...");
+	});
+	break;
+    }
+
     
     // Create dropdown menu
-    var select = document.getElementById("topology" + side.slice(0,1));
-    // side.slice selects only 'L/R' from 'Left'/'Right'
-    // to append options to topology(L/R) selects
 
+    /* side.slice selects only 'L/R' from 'Left'/'Right'
+     to append options to topology(L/R) selects */
+    var select = document.getElementById("topology" + side.slice(0,1)); // 
+
+    // Iterate through topologies and append as options
     for (var i = 0; i < topologies.length; i++) {
 	var topology = topologies[i];
         var el = document.createElement("option");
@@ -542,6 +569,7 @@ addTopologyRadioButtons = function (model, side) {
     if (hierarchicalClusteringExist)
 	addClusteringSlider(model, side);
 
+    // Hide slider by default
     setClusteringSliderVisibility(side, "hidden");
 
 	
