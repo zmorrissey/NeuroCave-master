@@ -123,15 +123,23 @@ button > input[type="checkbox"] {
     z-index: 2
 }
 
-#colorCoding{
+#colorCoding {
     position: absolute;
     width: 100px;
     height: 25px;
     top: 55%;
     right: 100px;
+    z-index: 3;
 }
 
-#subjectMenuLeft {
+
+label[for="subjectMenuLeft"] {
+    top: 0px;
+    left: 1%;
+    color: floralwhite;
+}
+
+#subjectLabelLeft {
     position: absolute;
     height: 25px;
     width: 100px;
@@ -140,12 +148,34 @@ button > input[type="checkbox"] {
     color: black;
 }
 
+#subjectMenuLeft {
+    position: absolute;
+    height: 25px;
+    width: 100px;
+    top: 18px;
+    left: 0;
+    color: black;
+}
+
+label[for="subjectMenuRight"] {
+    top: 0px;
+    left: 51%;
+    color: floralwhite;
+}
+
+#subjectLabelRight {
+    position: absolute;
+    top: 5px;
+    left: 51%;
+    color: black;
+}
+
 #subjectMenuRight {
     position: absolute;
     height: 25px;
     width: 100px;
-    top: 5px;
-    left: 51%;
+    top: 18px;
+    left: 0;
     color: black;
 }
 
@@ -175,14 +205,14 @@ label[for="topologyL"] {
     position: absolute;
     height: 25px;
     top: 5px;
-    left: 20%;
+    left: 25%;
 }
 
 #syncRight {
     position: absolute;
     height: 25px;
     top: 5px;
-    left: 70%;
+    left: 75%;
 }
 
 label[for="topologyR"] {
