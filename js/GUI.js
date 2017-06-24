@@ -535,7 +535,6 @@ addTopologyRadioButtons = function (model, side) {
 	});
 	break;
     }
-
     
     // Create dropdown menu
 
@@ -554,83 +553,31 @@ addTopologyRadioButtons = function (model, side) {
 	el.selected = (i==0);
         select.appendChild(el);
     }
-
+	
     // Execute functions based on selection
-    switch(topology) {
-    case ("PLACE"):
-    case ("PACE"):
-	select.onchange = function() {
+    select.onchange = function() {
+        switch(this.value) {
+	case("PLACE"):
+	case("PACE"):
+	    addClusteringSlider(model, side);
 	    setClusteringSliderVisibility(side, "visible");
 	    changeActiveGeometry(model, side, this.value);
-	};
-	hierarchicalClusteringExist = true;
-	break;
-    default:
-	select.onchange = function() {
+	    hierarchicalClusteringExist = true;
+	    console.log("PLACE");
+	    break;
+	default:
+	    if (hierarchicalClusteringExist) {
+		var slider = document.getElementById("clusteringSlider" + side);
+		var sliderLabel = document.getElementById("clusteringSliderLabel" + side);
+	        slider.remove();
+		sliderLabel.remove();
+	    }
 	    setClusteringSliderVisibility(side, "hidden");
 	    changeActiveGeometry(model, side, this.value);
+	    console.log("default");
+	    break;
 	};
-	break;
-    }
-
-    if (hierarchicalClusteringExist)
-	addClusteringSlider(model, side);
-
-    // Hide slider by default
-    setClusteringSliderVisibility(side, "hidden");
-
-	
-
-
-   
-    
-/*    var topologies = model.getTopologies();
-    var hierarchicalClusteringExist = false;
-
-    var menu = d3.select("#topology" + side);
-
-    menu.append("br");
-
-    menu.append("label")
-        .attr("for","geometry" + side)
-        .text("Coordinate Space");
-    menu.append("br");
-
-    for (var i = 0; i <topologies.length; i++) {
-        var topology = topologies[i];
-        var ip = menu.append("input")
-            .attr("type", "radio")
-            .attr("name","geometry" + side)
-            .attr("id",topology + side)
-            .attr("value",topology)
-            .attr("checked", "false");
-        switch (topology) {
-            case ("PLACE"):
-            case ("PACE"):
-                ip.on("change", function () {
-                    setClusteringSliderVisibility(side, "visible");
-                    changeActiveGeometry(model, side, this.value);
-                });
-                hierarchicalClusteringExist = true;
-                break;
-            default:
-                ip.on("change", function () {
-                    setClusteringSliderVisibility(side, "hidden");
-                    changeActiveGeometry(model, side, this.value);
-                });
-                break;
-        }
-        menu.append("label")
-            .attr("for",topology)
-            .text(topology);
-        menu.append("br");
-    } 
-
-    if (hierarchicalClusteringExist)
-        addClusteringSlider(model, side);
-
-    setClusteringSliderVisibility(side, "hidden");
-    document.getElementById(topologies[0] + side).checked = "true"; */
+    };
 };
 
 // remove geometry buttons
