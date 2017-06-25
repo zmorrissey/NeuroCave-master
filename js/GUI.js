@@ -398,7 +398,6 @@ createLegend = function(model) {
 /* Color coding area at upload */
 // add "Color Coding" radio button group containing: Anatomy, Embeddedness ...
 addColorGroupList = function() {
-
     // Create dropdown menu by iterating through atlas names
     // and creating an option for each name
     var select = document.getElementById("colorCoding");

@@ -86,7 +86,7 @@ button > input[type="checkbox"] {
     position: relative;
     width : 95px;
     height: 40px;
-    /*margin: 4px; */
+    margin: 4px;
     font-size: 11px;
 }
 
@@ -123,12 +123,20 @@ button > input[type="checkbox"] {
     z-index: 2
 }
 
+label[for="colorCoding"] {
+    position: absolute;
+    top: 310px;
+    right: 114px;
+    z-index: 3;
+    color: floralwhite;
+}
+
 #colorCoding {
     position: absolute;
     width: 100px;
     height: 25px;
-    top: 55%;
-    right: 100px;
+    top: 327px;
+    right: 108px;
     z-index: 3;
 }
 
@@ -183,7 +191,7 @@ label[for="subjectMenuRight"] {
     position: absolute;
     width: 175px;
     height: 100px;
-    top: 200px;
+    top: 152px;
     right: 30px;
 }
 
@@ -270,7 +278,7 @@ label[for=clusteringSliderRight] {
 #edgeInfoPanel {
     position: absolute;
     width: 200px;
-    height: 200px;
+    /*height: 200px; */
     top: 10px;
     right: 10px;
     z-index: 2
