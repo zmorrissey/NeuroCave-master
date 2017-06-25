@@ -201,18 +201,30 @@ label[for="topologyL"] {
     left: 10%;
 }
 
+label[for=clusteringSliderLeft] {
+    position: absolute;
+    top: 5px;
+    left: 20%;
+}
+
+#clusteringSliderLeft {
+    position: absolute;
+    left: 19.5%;
+    top: 22px;
+}
+
 #syncLeft {
     position: absolute;
     height: 25px;
     top: 5px;
-    left: 25%;
+    left: 30%;
 }
 
 #syncRight {
     position: absolute;
     height: 25px;
     top: 5px;
-    left: 75%;
+    left: 80%;
 }
 
 label[for="topologyR"] {
@@ -229,6 +241,17 @@ label[for="topologyR"] {
     left: 60%;
 }
 
+label[for=clusteringSliderRight] {
+    position: absolute;
+    top: 5px;
+    left: 70%;
+}
+
+#clusteringSliderRight {
+    position: absolute;
+    left: 70%;
+    top: 22px;
+}
 #nodeInfoPanel {
     position: absolute;
     width: 300px;

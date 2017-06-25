@@ -591,12 +591,13 @@ removeGeometryButtons = function (side) {
 // add clustering level slider
 addClusteringSlider = function (model, side) {
     var menu = d3.select("#topology" + side);
-
-    menu.append("br");
     menu.append("label")
         .attr("for", "clusteringSlider" + side)
         .attr("id", "clusteringSliderLabel" + side)
-        .text("Level " + model.getClusteringLevel());
+        .text("Clustering level: " + model.getClusteringLevel());
+
+    menu.append("br");
+
     menu.append("input")
         .attr("type", "range")
         .attr("value", model.getClusteringLevel())
@@ -607,7 +608,7 @@ addClusteringSlider = function (model, side) {
         .on("change", function () {
             model.setClusteringLevel(parseInt(this.value));
             redrawScene(side);
-            document.getElementById("clusteringSliderLabel" + side).innerHTML = "Level " + this.value;
+            document.getElementById("clusteringSliderLabel" + side).innerHTML = "Clustering level: " + this.value;
         });
 };
 
