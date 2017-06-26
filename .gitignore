@@ -1,0 +1,6 @@
+# Ignore Emacs temporary buffers
+visualization.html~
+GUI.js~
+style.css~
+drawing.js~
+model.js~
