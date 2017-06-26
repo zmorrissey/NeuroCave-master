@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>NeuroCave</title>
+</head>
+<script type="text/javascript" src="js/utils/parsingData.js"></script>
+<script src="js/external-libraries/queue.js"></script>
+<script>
+
+    loadVisualization = function (folderName) {
+        queue()
+                .defer(setFolder,folderName)
+                .awaitAll( function() {
+                    console.log(folder);
+                });
+    }
+
+</script>
+
+<body>
+
+<h2>NeuroCave</h2>
+NeuroCave is a tool allows to visualize brain networks also called the <a href="https://en.wikipedia.org/wiki/Connectome">
+Connectome</a> which is the network that describes how the different regions of the brain are interconnected.
+Particularly, the tools enable to perform the exploration of the intrinsic geometry of the brain, by letting the user
+switch quickly different topological spaces where the connectome is embedded.
+With a simple and easy-to-use interface, users can explore all the connections with a edge-on-demand technique and focus on
+very specific area by switching on and off regions of the brain. Simple analytics such as nodal strength and shortest path
+trees can be computed on the fly. This tool has been developed with virtual reality in mind and it is compatible with
+the Oculus Rift and requires the Oculus Touch input.
+
+<h3>Acknowledgement</h3>
+The tool was entirely developed the <a href="https://www.evl.uic.edu/creativecoding/">Creative Coding Research Group</a>,
+directed by Prof. Angus Forbes. The research group is part of the <a href="https://www.evl.uic.edu">Electronic Visualization
+Lab (EVL)</a>  at University of Illinois at Chicago (UIC). This research is being done in collaboration with Alex Leow,
+Olusola Ajilore, and Allen Ye, all belonging to UIC Department of Psychiatry.
+
+<h2>Demo</h2>
+
+<ul>
+    <a onclick="location.href=this.href+'?dataset=Demo1&load=0&lut=freesurfer';return false;" href="visualization.html">Demo 1</a>
+    <p></p>
+    <a onclick="location.href=this.href+'?dataset=Demo2&load=0&lut=baltimore';return false;" href="visualization.html">Demo 2: F1000, female vs male</a>
+    <p></p>
+    <a onclick="location.href=this.href+'?dataset=Demo4&load=0&lut=mni';return false;" href="visualization.html">Demo 4: 2514 X 2514 </a>
+    <p></p>
+    <a onclick="location.href=this.href+'?dataset=Demo6&load=0&lut=baltimore';return false;" href="visualization.html">Demo 6: F1000, 7 groups of age</a>
+    <p></p>
+    <a onclick="location.href=this.href+'?dataset=Demo7&load=0&lut=baltimore';return false;" href="visualization.html">Demo 7: F1000, female vs male, age: 20-30</a>
+    <p></p>
+</ul>
+
+<h2>Demo For Samsung Gear (under test)</h2>
+
+<ul>
+    <a onclick="location.href=this.href;return false;" href="webvr_test.html">Test Your Phone</a>
+    <p></p>
+    <a onclick="location.href=this.href+'?dataset=Demo1&load=0&lut=freesurfer&mobile=1';return false;" href="visualization.html">Demo 1</a>
+    <p></p>
+</ul>
+
+<div class = "menu" id  = 'full'>
+    <h2>Use your own data:</h2>
+    In order to use your own data, follow these instructions:
+    <ul style="list-style-type:circle">
+        <li><a href="https://github.com/CreativeCodingLab/NeuroCave/archive/master.zip">Download</a> <b>NeuroCave</b> to
+            your local drive</li>
+        <li>Put the folder containing your data in <b>.\NeuroCave\data\</b>. Your data should follow the description in
+            <a href="https://github.com/CreativeCodingLab/neurocave#how-to-use-it">here</a>. </li>
+        <li>Browse for the folder using the below <b>'Browse'</b> button</li>
+        <li>Choose an <b>Atlas</b></li>
+        <li>Press the <b>'Submit'</b> button</li>
+    </ul>
+
+    <p></p>
+    <input id = 'folderSelect' type = 'file' onchange="getfolder(event)" webkitdirectory directory multiple/>Choose data folder</input>
+    <p></p>
+    <select id = "atlas" class = "jumpmenu"></select>
+    <label>Choose Atlas</label>
+    <p></p>
+    <button type = 'button' id = 'submit'
+            onclick="location.href='visualization.html'+'?dataset='+folder+'&load=0&lut='+option">Submit</button>
+    <br>
+</div>
+
+<script type="text/Javascript">
+    // populate the Atlas dropdown menu
+    var options = ['freesurfer', 'baltimore', 'mni'];
+    var option = options[0];
+    var menu = document.getElementById("atlas");
+    var folder = '';
+    for(var i = 0; i < 3; i++) {
+        var el = document.createElement("option");
+        el.textContent = options[i];
+        el.value = options[i];
+        el.selected = (i==0);
+        menu.appendChild(el);
+    }
+    menu.onchange = function () { option = options[this.selectedIndex]; };
+
+    // get user selected folder info
+    getfolder = function (e) {
+        console.log("Select folder");
+        var files = e.target.files;
+        if (files) {
+            if (files.length == 0) {
+                alert("Empty directory!!!")
+            } else {
+                folder = files[0].webkitRelativePath.split('/')[0];
+                console.log(folder)
+            }
+        }
+    };
+
+</script>
+
+</body>
+</html>
